@@ -7,9 +7,17 @@
     <div class="uni-left">
       <span class="section-num anim-el">02</span>
       <h2 class="anim-el">Universit&agrave; degli Studi<br>di Torino</h2>
-      <p class="uni-sub anim-el">Full Stack Development Course</p>
+      <p class="uni-sub anim-el">HCI + Full Stack Development Course</p>
 
       <div class="curriculum-cards">
+        <!-- HCI Card -->
+        <div class="cur-card hci-card anim-el">
+          <div class="cur-icon hci-icon">&#129504;</div>
+          <h4>HCI — Human Computer Interaction</h4>
+          <p>The science of designing interfaces that are <strong>usable</strong>, <strong>accessible</strong>, and <strong>human-centered</strong> — guided by Nielsen's heuristics and WCAG standards.</p>
+        </div>
+
+        <!-- Frontend Card -->
         <div class="cur-card anim-el">
           <div class="cur-icon">&#9883;</div>
           <h4>Frontend</h4>
@@ -32,7 +40,6 @@
         <div class="orbit-ring ring-1"></div>
         <div class="orbit-ring ring-2"></div>
         <div class="orbit-ring ring-3"></div>
-
         <!-- Center sun -->
         <div class="galaxy-center">
           <div class="center-glow"></div>
@@ -65,12 +72,18 @@
           </div>
         </div>
 
-        <!-- Outer orbit — TypeScript -->
+        <!-- Outer orbit — TypeScript & HCI -->
         <div class="orbit orbit-outer">
           <div class="planet" style="--color: #3178C6; --glow: rgba(49,120,198,0.35);">
             <div class="planet-body">
               <span class="planet-icon">TS</span>
               <span class="planet-name">TypeScript</span>
+            </div>
+          </div>
+          <div class="planet" style="--color: #A882FF; --glow: rgba(168,130,255,0.35);">
+            <div class="planet-body">
+              <span class="planet-icon">HCI</span>
+              <span class="planet-name">HCI</span>
             </div>
           </div>
         </div>
@@ -458,5 +471,18 @@
     transform: translateY(-50%);
     opacity: 0.3;
     border-radius: 2px;
+  }
+
+  /* ─── HCI CARD ─── */
+  .hci-card:hover {
+    border-color: rgba(168, 130, 255, 0.25);
+  }
+
+  .hci-card h4 {
+    color: #A882FF;
+  }
+
+  .hci-icon {
+    background: rgba(168, 130, 255, 0.12) !important;
   }
 </style>
