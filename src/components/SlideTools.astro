@@ -1,0 +1,155 @@
+---
+const tools = [
+  { icon: '&#128421;', name: 'VS Code', desc: 'Primary code editor with extensions', cat: 'Editor', idx: 1 },
+  { icon: '&#127912;', name: 'Figma', desc: 'UI/UX design & prototyping', cat: 'Design', idx: 2 },
+  { icon: '&#128048;', name: 'Git & GitHub', desc: 'Version control & collaboration', cat: 'Workflow', idx: 3 },
+  { icon: '&#9889;', name: 'Vite', desc: 'Lightning-fast build tool & dev server', cat: 'Build', idx: 4 },
+  { icon: '&#128230;', name: 'npm / pnpm', desc: 'Package management & scripts', cat: 'Packages', idx: 5 },
+  { icon: '&#127760;', name: 'Vercel / Netlify', desc: 'Deployment & hosting platforms', cat: 'Deploy', idx: 6 },
+  { icon: '&#128270;', name: 'Chrome DevTools', desc: 'Debugging, profiling & testing', cat: 'Debug', idx: 7 },
+  { icon: '&#129302;', name: 'AI Assistants', desc: 'Claude, Copilot — accelerated coding', cat: 'AI', idx: 8 },
+];
+---
+
+<section id="tools" class="slide slide-tools">
+  <div class="tools-container">
+    <span class="section-num anim-el">08</span>
+    <h2 class="anim-el">My Toolkit</h2>
+    <p class="tools-intro anim-el" data-i18n="tools.intro">The everyday tools that power my workflow</p>
+
+    <div class="tools-orbit">
+      <div class="orbit-center anim-el">
+        <span>&#9883;</span>
+        <small>Dev</small>
+      </div>
+
+      <div class="tools-grid">
+        {tools.map((tool, i) => (
+          <div class="tool-chip anim-el" data-delay={i * 0.07}>
+            <span class="tool-icon" set:html={tool.icon} />
+            <div class="tool-info">
+              <strong>{tool.name}</strong>
+              <span data-i18n={`tools.desc${tool.idx}`}>{tool.desc}</span>
+            </div>
+            <span class="tool-cat">{tool.cat}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .slide-tools {
+    flex-direction: column;
+    background: radial-gradient(ellipse at 60% 40%, rgba(0, 245, 212, 0.03) 0%, transparent 50%);
+  }
+
+  .tools-container {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .section-num {
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0, 245, 212, 0.15);
+    line-height: 1;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .tools-container h2 {
+    font-size: clamp(32px, 4.5vw, 48px);
+    margin-bottom: 8px;
+  }
+
+  .tools-intro {
+    color: var(--gray);
+    font-size: 16px;
+    margin-bottom: 48px;
+  }
+
+  .tools-orbit {
+    position: relative;
+  }
+
+  .orbit-center {
+    display: none;
+  }
+
+  .tools-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tool-chip {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: rgba(21, 26, 46, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 14px;
+    text-align: left;
+    transition: border-color 0.35s ease, transform 0.35s var(--ease-out-expo), background 0.35s ease;
+    cursor: default;
+  }
+
+  .tool-chip:hover {
+    border-color: rgba(0, 245, 212, 0.15);
+    transform: translateX(6px);
+    background: rgba(21, 26, 46, 0.9);
+  }
+
+  .tool-icon {
+    font-size: 24px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+
+  .tool-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .tool-info strong {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .tool-info span {
+    font-size: 13px;
+    color: var(--gray);
+  }
+
+  .tool-cat {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    background: var(--cyan-dim);
+    padding: 3px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 600px) {
+    .tool-cat { display: none; }
+  }
+</style>

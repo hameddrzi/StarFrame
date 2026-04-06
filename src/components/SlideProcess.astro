@@ -1,0 +1,182 @@
+---
+const steps = [
+  { icon: '&#128161;', title: 'Idea & Brief', desc: 'Define goals, target user, scope', idx: 1 },
+  { icon: '&#127912;', title: 'Design in Figma', desc: 'Wireframe, Prototype, UI Kit', idx: 2 },
+  { icon: '&#129521;', title: 'Component Architecture', desc: 'Break UI into reusable components', idx: 3 },
+  { icon: '&#128187;', title: 'Build the View', desc: 'HTML/CSS/JS or React implementation', idx: 4 },
+  { icon: '&#128640;', title: 'Deploy & Iterate', desc: 'Ship it, gather feedback, improve', idx: 5 },
+];
+---
+
+<section id="process" class="slide slide-process">
+  <div class="process-container">
+    <span class="section-num anim-el">04</span>
+    <h2 class="anim-el">From Idea to Interface</h2>
+    <p class="process-intro anim-el" data-i18n="process.intro">The journey of building a modern web application</p>
+
+    <div class="process-track">
+      {steps.map((step, i) => (
+        <div class="process-item anim-el" data-delay={i * 0.12}>
+          <div class="step-number">{String(i + 1).padStart(2, '0')}</div>
+          <div class="step-card">
+            <div class="step-icon" set:html={step.icon} />
+            <h3>{step.title}</h3>
+            <p data-i18n={`process.desc${step.idx}`}>{step.desc}</p>
+          </div>
+          {i < steps.length - 1 && (
+            <div class="step-connector">
+              <svg viewBox="0 0 60 12" class="connector-svg">
+                <path d="M0 6 L48 6" class="conn-path" fill="none" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <path d="M44 2 L52 6 L44 10" class="conn-arrow" fill="none" stroke="var(--cyan)" stroke-width="1.5"/>
+              </svg>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .slide-process {
+    flex-direction: column;
+    background: radial-gradient(ellipse at 50% 60%, rgba(255, 183, 3, 0.02) 0%, transparent 50%);
+  }
+
+  .process-container {
+    text-align: center;
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  .section-num {
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0, 245, 212, 0.15);
+    line-height: 1;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .process-container h2 {
+    font-size: clamp(32px, 4.5vw, 48px);
+    margin-bottom: 8px;
+  }
+
+  .process-intro {
+    color: var(--gray);
+    font-size: 16px;
+    margin-bottom: 56px;
+  }
+
+  .process-track {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+  }
+
+  @media (max-width: 900px) {
+    .process-track {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .process-item {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  @media (max-width: 900px) {
+    .process-item {
+      flex-direction: column;
+    }
+  }
+
+  .step-number {
+    position: absolute;
+    top: -12px;
+    right: -8px;
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 800;
+    color: rgba(0, 245, 212, 0.06);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .step-card {
+    position: relative;
+    width: 165px;
+    background: rgba(21, 26, 46, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 18px;
+    padding: 28px 16px 22px;
+    text-align: center;
+    transition: border-color 0.4s ease, transform 0.4s var(--ease-out-expo);
+    overflow: hidden;
+  }
+
+  .step-card:hover {
+    border-color: rgba(0, 245, 212, 0.2);
+    transform: translateY(-4px);
+  }
+
+  .step-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .step-card h3 {
+    font-size: 14px;
+    color: var(--cyan);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .step-card p {
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  .step-connector {
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+  }
+
+  .connector-svg {
+    width: 50px;
+    height: 12px;
+  }
+
+  .conn-path, .conn-arrow {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    transition: stroke-dashoffset 0.8s var(--ease-out-expo);
+  }
+
+  .slide-process.is-active .conn-path,
+  .slide-process.is-active .conn-arrow {
+    stroke-dashoffset: 0;
+  }
+
+  .process-item:nth-child(2) .conn-path,
+  .process-item:nth-child(2) .conn-arrow { transition-delay: 0.3s; }
+  .process-item:nth-child(3) .conn-path,
+  .process-item:nth-child(3) .conn-arrow { transition-delay: 0.5s; }
+  .process-item:nth-child(4) .conn-path,
+  .process-item:nth-child(4) .conn-arrow { transition-delay: 0.7s; }
+
+  @media (max-width: 900px) {
+    .step-connector {
+      transform: rotate(90deg);
+      padding: 8px 0;
+    }
+  }
+</style>

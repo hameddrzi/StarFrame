@@ -1,0 +1,19 @@
+---
+const slides = [
+  { id: 'hero', label: 'Intro' },
+  { id: 'university', label: 'University' },
+  { id: 'frameworks', label: 'Frameworks' },
+  { id: 'process', label: 'Process' },
+  { id: 'interfaces', label: 'Interfaces' },
+  { id: 'backend', label: 'Backend' },
+  { id: 'libvsfw', label: 'Lib vs FW' },
+  { id: 'tools', label: 'Tools' },
+  { id: 'contact', label: 'Contact' },
+];
+---
+
+<nav id="dot-nav">
+  {slides.map((s, i) => (
+    <a href={`#${s.id}`} data-label={s.label} data-index={i} class={i === 0 ? 'active' : ''} />
+  ))}
+</nav>

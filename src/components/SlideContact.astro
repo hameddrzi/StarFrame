@@ -1,0 +1,166 @@
+---
+
+---
+
+<section id="contact" class="slide slide-contact">
+  <div class="contact-inner">
+    <span class="section-num anim-el">09</span>
+    <h2 class="anim-el">Let's Connect</h2>
+    <p class="contact-sub anim-el" data-i18n="contact.sub">Thanks for watching — feel free to reach out</p>
+
+    <div class="contact-card anim-el">
+      <div class="c-avatar">HD</div>
+      <h3>Hamed Darzi</h3>
+      <p class="c-role">Frontend Developer</p>
+      <div class="c-divider"></div>
+      <div class="c-links">
+        <a href="mailto:hamed@example.com" class="c-link anim-el" data-delay="0.2">
+          <span class="c-link-icon">&#9993;</span>
+          <span>Email</span>
+        </a>
+        <a href="#" class="c-link anim-el" data-delay="0.3">
+          <span class="c-link-icon">&#128279;</span>
+          <span>LinkedIn</span>
+        </a>
+        <a href="#" class="c-link anim-el" data-delay="0.4">
+          <span class="c-link-icon">&#128187;</span>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+
+    <p class="built-with anim-el">
+      Built with <span class="hw-astro">Astro</span> + <span class="hw-gsap">GSAP</span>
+    </p>
+  </div>
+</section>
+
+<style>
+  .slide-contact {
+    flex-direction: column;
+    background:
+      radial-gradient(ellipse at 30% 60%, rgba(0, 245, 212, 0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 40%, rgba(255, 183, 3, 0.03) 0%, transparent 50%);
+  }
+
+  .contact-inner {
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .section-num {
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0, 245, 212, 0.15);
+    line-height: 1;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .contact-inner h2 {
+    font-size: clamp(36px, 5vw, 56px);
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--white), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .contact-sub {
+    color: var(--gray);
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  .contact-card {
+    background: rgba(21, 26, 46, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
+    padding: 44px 36px;
+    margin-bottom: 32px;
+  }
+
+  .c-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyan), var(--amber));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 24px;
+    color: var(--bg);
+    margin: 0 auto 16px;
+  }
+
+  .contact-card h3 {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+
+  .c-role {
+    color: var(--gray);
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .c-divider {
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--amber));
+    margin: 0 auto 24px;
+    border-radius: 2px;
+  }
+
+  .c-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .c-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 500;
+    transition: border-color 0.35s ease, transform 0.35s var(--ease-out-expo), background 0.35s ease;
+  }
+
+  .c-link:hover {
+    border-color: rgba(0, 245, 212, 0.3);
+    transform: translateY(-3px);
+    background: rgba(0, 245, 212, 0.06);
+  }
+
+  .c-link-icon {
+    font-size: 18px;
+  }
+
+  .built-with {
+    font-size: 13px;
+    color: var(--gray-dark);
+    letter-spacing: 0.04em;
+  }
+
+  .hw-astro {
+    color: var(--amber);
+    font-weight: 600;
+  }
+
+  .hw-gsap {
+    color: var(--cyan);
+    font-weight: 600;
+  }
+</style>

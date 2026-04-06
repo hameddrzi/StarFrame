@@ -1,0 +1,354 @@
+---
+
+---
+
+<section id="interfaces" class="slide slide-interfaces">
+  <div class="if-container">
+    <span class="section-num anim-el">05</span>
+    <h2 class="anim-el">What is an Interface?</h2>
+    <p class="if-intro anim-el" data-i18n="if.intro">The word "interface" means different things in different contexts</p>
+
+    <div class="if-layout">
+      <!-- Main cube -->
+      <div class="if-main-cube anim-el">
+        <div class="cube-face">
+          <span class="cube-label">Interface</span>
+          <small data-i18n="if.main_sub">A point where two systems meet and interact</small>
+        </div>
+      </div>
+
+      <!-- Connector lines -->
+      <div class="if-connectors anim-el">
+        <div class="conn-line cl1"></div>
+        <div class="conn-line cl2"></div>
+        <div class="conn-line cl3"></div>
+      </div>
+
+      <!-- 3 child cubes -->
+      <div class="if-children">
+        <div class="if-child anim-el" data-delay="0.2">
+          <div class="child-cube ui-cube">
+            <span class="child-icon">&#128241;</span>
+            <strong>UI</strong>
+          </div>
+          <div class="child-info">
+            <h3>User Interface</h3>
+            <p data-i18n="if.ui_desc">The visual layer that a <em>human</em> interacts with — buttons, forms, menus, screens. Everything you see and touch in an app. When we say "frontend", we mostly mean building the UI.</p>
+            <div class="child-example">
+              <span>&#128161;</span> <span data-i18n="if.ui_example">A login page with inputs, a submit button, and error messages — that's a UI.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="if-child anim-el" data-delay="0.35">
+          <div class="child-cube api-cube">
+            <span class="child-icon">&#128268;</span>
+            <strong>API</strong>
+          </div>
+          <div class="child-info">
+            <h3>Application Programming Interface</h3>
+            <p data-i18n="if.api_desc">A set of rules that lets two <em>programs</em> talk to each other. The frontend sends a request, the backend responds with data. No visuals — just structured communication.</p>
+            <div class="child-example">
+              <span>&#128161;</span> <span data-i18n="if.api_example">Your app calls <code>GET /api/users</code> and the server responds with a list of users in JSON.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="if-child anim-el" data-delay="0.5">
+          <div class="child-cube obj-cube">
+            <span class="child-icon">&#128220;</span>
+            <strong>OI</strong>
+          </div>
+          <div class="child-info">
+            <h3>Object Interface</h3>
+            <p data-i18n="if.oi_desc">A contract in code that defines <em>what methods or properties</em> an object must have — without saying how they work. Used in TypeScript and Java to enforce structure.</p>
+            <div class="child-example">
+              <span>&#128161;</span> <span data-i18n="if.oi_example"><pre><code>interface User &#123;
+  name: string;
+  age: number;
+&#125;</code></pre> any object claiming to be a User must have these fields.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .slide-interfaces {
+    flex-direction: column;
+    background: radial-gradient(ellipse at 50% 30%, rgba(0, 245, 212, 0.03) 0%, transparent 50%);
+  }
+
+  .if-container {
+    max-width: 1100px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .section-num {
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0, 245, 212, 0.15);
+    line-height: 1;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .if-container h2 {
+    font-size: clamp(32px, 4.5vw, 48px);
+    margin-bottom: 8px;
+  }
+
+  .if-intro {
+    color: var(--gray);
+    font-size: 16px;
+    margin-bottom: 48px;
+  }
+
+  /* ─── LAYOUT ─── */
+  .if-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* ─── MAIN CUBE ─── */
+  .if-main-cube {
+    perspective: 600px;
+  }
+
+  .cube-face {
+    padding: 28px 48px;
+    background: linear-gradient(135deg, rgba(0, 245, 212, 0.1), rgba(0, 245, 212, 0.03));
+    border: 2px solid rgba(0, 245, 212, 0.3);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 8px 40px rgba(0, 245, 212, 0.08), inset 0 1px 0 rgba(255,255,255,0.05);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transform: rotateX(5deg);
+  }
+
+  .cube-face:hover {
+    transform: rotateX(0deg) scale(1.03);
+    box-shadow: 0 12px 50px rgba(0, 245, 212, 0.12);
+  }
+
+  .cube-label {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--cyan);
+  }
+
+  .cube-face small {
+    font-size: 13px;
+    color: var(--gray);
+  }
+
+  /* ─── CONNECTORS ─── */
+  .if-connectors {
+    display: flex;
+    justify-content: center;
+    gap: 140px;
+    height: 40px;
+    position: relative;
+    width: 100%;
+  }
+
+  .conn-line {
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 245, 212, 0.3), rgba(0, 245, 212, 0.08));
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .conn-line::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px rgba(0, 245, 212, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .if-connectors { gap: 60px; }
+  }
+
+  /* ─── CHILDREN ─── */
+  .if-children {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+  }
+
+  @media (max-width: 900px) {
+    .if-children { grid-template-columns: 1fr; gap: 16px; }
+    .if-connectors { display: none; }
+  }
+
+  .if-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  /* Child cubes */
+  .child-cube {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
+    cursor: default;
+  }
+
+  .child-cube:hover {
+    transform: translateY(-6px) scale(1.08);
+  }
+
+  .ui-cube {
+    background: linear-gradient(135deg, rgba(0, 245, 212, 0.12), rgba(0, 245, 212, 0.04));
+    border: 2px solid rgba(0, 245, 212, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 245, 212, 0.06);
+  }
+  .ui-cube:hover { box-shadow: 0 8px 30px rgba(0, 245, 212, 0.12); }
+
+  .api-cube {
+    background: linear-gradient(135deg, rgba(255, 183, 3, 0.12), rgba(255, 183, 3, 0.04));
+    border: 2px solid rgba(255, 183, 3, 0.25);
+    box-shadow: 0 4px 20px rgba(255, 183, 3, 0.06);
+  }
+  .api-cube:hover { box-shadow: 0 8px 30px rgba(255, 183, 3, 0.12); }
+
+  .obj-cube {
+    background: linear-gradient(135deg, rgba(168, 130, 255, 0.12), rgba(168, 130, 255, 0.04));
+    border: 2px solid rgba(168, 130, 255, 0.25);
+    box-shadow: 0 4px 20px rgba(168, 130, 255, 0.06);
+  }
+  .obj-cube:hover { box-shadow: 0 8px 30px rgba(168, 130, 255, 0.12); }
+
+  .child-icon {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .child-cube strong {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+
+  .ui-cube strong { color: var(--cyan); }
+  .api-cube strong { color: var(--amber); }
+  .obj-cube strong { color: #A882FF; }
+
+  /* Info card */
+  .child-info {
+    background: rgba(21, 26, 46, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 22px 20px;
+    text-align: left;
+    width: 100%;
+    transition: border-color 0.4s ease;
+  }
+
+  .if-child:nth-child(1) .child-info:hover { border-color: rgba(0, 245, 212, 0.2); }
+  .if-child:nth-child(2) .child-info:hover { border-color: rgba(255, 183, 3, 0.2); }
+  .if-child:nth-child(3) .child-info:hover { border-color: rgba(168, 130, 255, 0.2); }
+
+  .child-info h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  .if-child:nth-child(1) h3 { color: var(--cyan); }
+  .if-child:nth-child(2) h3 { color: var(--amber); }
+  .if-child:nth-child(3) h3 { color: #A882FF; }
+
+  .child-info p {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .child-info :global(em) {
+    color: var(--white);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .child-example {
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.6;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .child-example > span:first-child {
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  .child-example [data-i18n] {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .child-example :global(code) {
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 11px;
+    background: rgba(0, 245, 212, 0.08);
+    color: var(--cyan);
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
+
+  .child-example :global(pre) {
+    background: rgba(10, 14, 26, 0.8);
+    border: 1px solid rgba(0, 245, 212, 0.12);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    overflow-x: auto;
+  }
+
+  .child-example :global(pre code) {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 11px;
+    line-height: 1.7;
+    white-space: pre;
+    display: block;
+  }
+</style>

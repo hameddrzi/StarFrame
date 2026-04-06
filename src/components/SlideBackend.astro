@@ -1,0 +1,226 @@
+---
+
+---
+
+<section id="backend" class="slide slide-backend">
+  <div class="backend-inner">
+    <!-- LEFT: Diagram -->
+    <div class="diagram-wrap anim-el">
+      <!-- Frontend cube -->
+      <div class="dia-cube fe-cube">
+        <span class="dia-icon">&#128241;</span>
+        <strong>Frontend</strong>
+      </div>
+
+      <!-- Connector: APIs -->
+      <div class="dia-conn">
+        <div class="conn-line-v"></div>
+        <span class="conn-tag">APIs</span>
+        <div class="conn-line-v"></div>
+        <div class="conn-dot"></div>
+      </div>
+
+      <!-- Backend cube -->
+      <div class="dia-cube be-cube">
+        <span class="dia-icon">&#9881;</span>
+        <strong>Backend</strong>
+      </div>
+
+      <!-- Connector: Queries -->
+      <div class="dia-conn">
+        <div class="conn-line-v"></div>
+        <span class="conn-tag">Queries</span>
+        <div class="conn-line-v"></div>
+        <div class="conn-dot"></div>
+      </div>
+
+      <!-- Database cube -->
+      <div class="dia-cube db-cube">
+        <span class="dia-icon">&#128451;</span>
+        <strong>DataBase</strong>
+      </div>
+    </div>
+
+    <!-- RIGHT: Text -->
+    <div class="backend-text">
+      <span class="section-num anim-el">06</span>
+      <h2 class="anim-el">Why Backend &amp;<br>Database Matter</h2>
+      <p class="metaphor anim-el" data-i18n="be.metaphor">"The frontend is the window display.<br>The backend is the warehouse &amp; logistics making it all possible."</p>
+      <p class="backend-desc anim-el" data-i18n="be.desc1">Without data from the backend, the frontend is just a static picture. Every form you submit, every feed you scroll, every login you perform — it all depends on servers, APIs, databases, and business logic running behind the scenes.</p>
+      <p class="backend-desc anim-el" data-i18n="be.desc2">A great frontend developer understands this relationship. The UI is what people see — but the real power lies behind it.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .slide-backend {
+    background: radial-gradient(ellipse at 30% 70%, rgba(0, 100, 200, 0.04) 0%, transparent 50%);
+  }
+
+  .backend-inner {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 80px;
+    max-width: 1100px;
+    width: 100%;
+    align-items: center;
+  }
+
+  @media (max-width: 900px) {
+    .backend-inner { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .section-num {
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0, 245, 212, 0.15);
+    line-height: 1;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* ─── DIAGRAM ─── */
+  .diagram-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* ─── CUBES (same style as Interfaces slide) ─── */
+  .dia-cube {
+    width: 260px;
+    padding: 24px 28px;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    cursor: default;
+    position: relative;
+  }
+
+  .dia-cube:hover {
+    transform: translateY(-6px) scale(1.03);
+  }
+
+  .dia-icon {
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .dia-cube strong {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+
+  .dia-cube small {
+    font-size: 11px;
+    opacity: 0.8;
+    letter-spacing: 0.03em;
+  }
+
+  /* Frontend - cyan */
+  .fe-cube {
+    background: rgba(0, 245, 212, 0.08);
+    border: 2px solid rgba(0, 245, 212, 0.6);
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.15), 0 8px 40px rgba(0, 245, 212, 0.1);
+  }
+  .fe-cube:hover { box-shadow: 0 0 30px rgba(0, 245, 212, 0.25), 0 12px 50px rgba(0, 245, 212, 0.18); }
+  .fe-cube strong { color: var(--cyan); }
+  .fe-cube small { color: var(--cyan); }
+
+  /* Backend - amber */
+  .be-cube {
+    background: rgba(255, 183, 3, 0.08);
+    border: 2px solid rgba(255, 183, 3, 0.6);
+    box-shadow: 0 0 20px rgba(255, 183, 3, 0.15), 0 8px 40px rgba(255, 183, 3, 0.1);
+  }
+  .be-cube:hover { box-shadow: 0 0 30px rgba(255, 183, 3, 0.25), 0 12px 50px rgba(255, 183, 3, 0.18); }
+  .be-cube strong { color: var(--amber); }
+  .be-cube small { color: var(--amber); }
+
+  /* Database - purple */
+  .db-cube {
+    background: rgba(168, 130, 255, 0.08);
+    border: 2px solid rgba(168, 130, 255, 0.6);
+    box-shadow: 0 0 20px rgba(168, 130, 255, 0.15), 0 8px 40px rgba(168, 130, 255, 0.1);
+  }
+  .db-cube:hover { box-shadow: 0 0 30px rgba(168, 130, 255, 0.25), 0 12px 50px rgba(168, 130, 255, 0.18); }
+  .db-cube strong { color: #A882FF; }
+  .db-cube small { color: #A882FF; }
+
+  /* ─── CONNECTORS (same style as Interfaces) ─── */
+  .dia-conn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    position: relative;
+  }
+
+  .conn-line-v {
+    width: 2px;
+    height: 18px;
+    background: linear-gradient(to bottom, rgba(0, 245, 212, 0.3), rgba(0, 245, 212, 0.08));
+    border-radius: 2px;
+  }
+
+  .conn-tag {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--cyan);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 16px;
+    background: rgba(0, 245, 212, 0.06);
+    border: 1px solid rgba(0, 245, 212, 0.15);
+    border-radius: 100px;
+  }
+
+  .conn-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px rgba(0, 245, 212, 0.4);
+    margin-top: 2px;
+  }
+
+  /* ─── TEXT ─── */
+  .backend-text h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  .metaphor {
+    font-size: 17px;
+    color: var(--amber);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--amber);
+  }
+
+  .backend-desc {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  @media (max-width: 500px) {
+    .dia-cube { width: 200px; padding: 20px 16px; }
+    .dia-cube strong { font-size: 17px; }
+  }
+</style>

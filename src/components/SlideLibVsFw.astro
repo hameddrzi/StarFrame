@@ -1,0 +1,373 @@
+---
+
+---
+
+<section id="libvsfw" class="slide slide-libvsfw">
+  <div class="lf-container">
+    <span class="section-num anim-el">07</span>
+    <h2 class="anim-el">Library or Framework?</h2>
+
+    <div class="compare-grid">
+      <div class="compare-panel lib-panel anim-el">
+        <div class="panel-glow lib-glow"></div>
+        <div class="panel-header">
+          <div class="panel-icon">&#128736;</div>
+          <h3>Library</h3>
+        </div>
+        <p class="panel-metaphor" data-i18n="lf.lib_metaphor">"You call it when you need it — you're in control."</p>
+        <div class="panel-visual">
+          <div class="vis-block vb1"></div>
+          <div class="vis-block vb2"></div>
+          <div class="vis-block vb3"></div>
+          <div class="vis-block vb-free"></div>
+        </div>
+        <div class="panel-key" data-i18n="lf.lib_key">
+          <strong>React</strong> is a library — you decide the architecture, routing, state management. You pick the tools from the toolbox.
+        </div>
+
+        <div class="panel-examples">
+          <h4 data-i18n="lf.examples">Examples</h4>
+          <div class="example-chips">
+            <span class="ex-chip lib-chip">React</span>
+            <span class="ex-chip lib-chip">jQuery</span>
+            <span class="ex-chip lib-chip">D3.js</span>
+            <span class="ex-chip lib-chip">Three.js</span>
+            <span class="ex-chip lib-chip">GSAP</span>
+            <span class="ex-chip lib-chip">Lodash</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-vs anim-el">
+        <div class="vs-badge">
+          <span>VS</span>
+        </div>
+        <div class="vs-line"></div>
+      </div>
+
+      <div class="compare-panel fw-panel anim-el">
+        <div class="panel-glow fw-glow"></div>
+        <div class="panel-header">
+          <div class="panel-icon">&#128208;</div>
+          <h3>Framework</h3>
+        </div>
+        <p class="panel-metaphor" data-i18n="lf.fw_metaphor">"It calls you — the structure is predefined."</p>
+        <div class="panel-visual">
+          <div class="vis-scaffold">
+            <div class="sc-slot"></div>
+            <div class="sc-slot"></div>
+            <div class="sc-slot"></div>
+            <div class="sc-slot filled"></div>
+          </div>
+        </div>
+        <div class="panel-key" data-i18n="lf.fw_key">
+          <strong>Angular</strong> is a framework — it dictates how you organize code, inject dependencies, and test. The blueprint is set.
+        </div>
+
+        <div class="panel-examples">
+          <h4 data-i18n="lf.examples">Examples</h4>
+          <div class="example-chips">
+            <span class="ex-chip fw-chip">Angular</span>
+            <span class="ex-chip fw-chip">Next.js</span>
+            <span class="ex-chip fw-chip">Nuxt.js</span>
+            <span class="ex-chip fw-chip">Astro</span>
+            <span class="ex-chip fw-chip">Svelte</span>
+            <span class="ex-chip fw-chip">Vue.js</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="lf-summary anim-el" data-i18n="lf.summary"><strong>React gives freedom. Angular gives structure.</strong> Both build great products.</p>
+  </div>
+</section>
+
+<style>
+  .slide-libvsfw {
+    flex-direction: column;
+  }
+
+  .lf-container {
+    max-width: 1050px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .section-num {
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0, 245, 212, 0.15);
+    line-height: 1;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .lf-container h2 {
+    font-size: clamp(32px, 4.5vw, 48px);
+    margin-bottom: 48px;
+  }
+
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  @media (max-width: 900px) {
+    .compare-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  .compare-panel {
+    position: relative;
+    background: rgba(21, 26, 46, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 22px;
+    padding: 36px 28px;
+    text-align: left;
+    overflow: hidden;
+    transition: border-color 0.4s ease;
+  }
+
+  .compare-panel:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .panel-glow {
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .lib-glow { background: var(--cyan); }
+  .fw-glow { background: var(--amber); }
+
+  .panel-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .panel-icon {
+    font-size: 32px;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+  }
+
+  .lib-panel .panel-icon { background: var(--cyan-dim); }
+  .fw-panel .panel-icon { background: var(--amber-dim); }
+
+  .panel-header h3 {
+    font-size: 26px;
+  }
+
+  .lib-panel h3 { color: var(--cyan); }
+  .fw-panel h3 { color: var(--amber); }
+
+  .panel-metaphor {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--white);
+    opacity: 0.75;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  /* Visual: Library — scattered blocks */
+  .panel-visual {
+    margin-bottom: 24px;
+    height: 65px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .vis-block {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid var(--cyan);
+    background: rgba(0, 245, 212, 0.15);
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 12px rgba(0, 245, 212, 0.1);
+  }
+
+  .vb1 { top: 6px; left: 8%; transform: rotate(-8deg); }
+  .vb2 { top: 2px; left: 30%; transform: rotate(5deg); }
+  .vb3 { top: 10px; left: 52%; transform: rotate(-3deg); }
+  .vb-free { top: 0; left: 74%; transform: rotate(12deg); border-style: dashed; opacity: 0.6; }
+
+  .lib-panel:hover .vb1 { transform: rotate(0deg) translateY(-2px); }
+  .lib-panel:hover .vb2 { transform: rotate(0deg) translateY(-4px); }
+  .lib-panel:hover .vb3 { transform: rotate(0deg) translateY(-2px); }
+
+  /* Visual: Framework — scaffold */
+  .vis-scaffold {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    height: 50px;
+  }
+
+  .sc-slot {
+    border: 2px dashed rgba(255, 183, 3, 0.3);
+    border-radius: 10px;
+    background: rgba(255, 183, 3, 0.03);
+    transition: all 0.4s ease;
+  }
+
+  .sc-slot.filled {
+    border-style: solid;
+    border-color: var(--amber);
+    background: rgba(255, 183, 3, 0.15);
+    box-shadow: 0 0 12px rgba(255, 183, 3, 0.1);
+  }
+
+  .fw-panel:hover .sc-slot {
+    border-color: rgba(255, 183, 3, 0.4);
+  }
+
+  .panel-key {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.7;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    border-left: 3px solid;
+  }
+
+  .lib-panel .panel-key { border-color: var(--cyan); }
+  .fw-panel .panel-key { border-color: var(--amber); }
+
+  .panel-key strong {
+    color: var(--white);
+  }
+
+  /* VS divider */
+  .compare-vs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    position: relative;
+  }
+
+  @media (max-width: 900px) {
+    .compare-vs { flex-direction: row; padding: 0; gap: 16px; }
+    .vs-line { width: 100%; height: 1px !important; }
+  }
+
+  .vs-badge {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyan), var(--amber));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  .vs-badge span {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--bg);
+  }
+
+  @keyframes vs-ring {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 245, 212, 0.3); }
+    50% { box-shadow: 0 0 0 16px rgba(0, 245, 212, 0); }
+  }
+
+  .slide-libvsfw.is-active .vs-badge {
+    animation: vs-ring 2.5s ease-in-out infinite;
+  }
+
+  .vs-line {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.1), transparent);
+  }
+
+  /* Examples list */
+  .panel-examples {
+    margin-top: 20px;
+  }
+
+  .panel-examples h4 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 10px;
+  }
+
+  .example-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ex-chip {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
+
+  .ex-chip:hover {
+    transform: translateY(-2px);
+  }
+
+  .lib-chip {
+    background: rgba(0, 245, 212, 0.08);
+    color: var(--cyan);
+    border: 1px solid rgba(0, 245, 212, 0.15);
+  }
+
+  .lib-chip:hover {
+    box-shadow: 0 4px 16px rgba(0, 245, 212, 0.12);
+  }
+
+  .fw-chip {
+    background: rgba(255, 183, 3, 0.08);
+    color: var(--amber);
+    border: 1px solid rgba(255, 183, 3, 0.15);
+  }
+
+  .fw-chip:hover {
+    box-shadow: 0 4px 16px rgba(255, 183, 3, 0.12);
+  }
+
+  .lf-summary {
+    margin-top: 40px;
+    font-size: 17px;
+    color: var(--gray);
+  }
+
+  .lf-summary strong {
+    color: var(--white);
+  }
+</style>

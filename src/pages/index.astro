@@ -1,0 +1,355 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DotNav from '../components/DotNav.astro';
+import LangToggle from '../components/LangToggle.astro';
+import SlideHero from '../components/SlideHero.astro';
+import SlideUniversity from '../components/SlideUniversity.astro';
+import SlideFrameworks from '../components/SlideFrameworks.astro';
+import SlideProcess from '../components/SlideProcess.astro';
+import SlideInterfaces from '../components/SlideInterfaces.astro';
+import SlideBackend from '../components/SlideBackend.astro';
+import SlideLibVsFw from '../components/SlideLibVsFw.astro';
+import SlideTools from '../components/SlideTools.astro';
+import SlideContact from '../components/SlideContact.astro';
+import '../styles/global.css';
+---
+
+<Layout title="Hamed Darzi — Frontend Developer">
+  <DotNav />
+  <LangToggle />
+
+  <!-- Popup outside slide-track so position:fixed works -->
+  <div class="popup-overlay" id="fw-popup">
+    <div class="popup-card">
+      <button class="popup-close" id="popup-close">&times;</button>
+      <div class="popup-badge" id="popup-badge"></div>
+      <h3 class="popup-title" id="popup-title"></h3>
+      <p class="popup-text" id="popup-text"></p>
+    </div>
+  </div>
+
+  <div id="slide-track">
+    <SlideHero />
+    <SlideUniversity />
+    <SlideFrameworks />
+    <SlideProcess />
+    <SlideInterfaces />
+    <SlideBackend />
+    <SlideLibVsFw />
+    <SlideTools />
+    <SlideContact />
+  </div>
+</Layout>
+
+<script>
+  import { gsap } from 'gsap';
+
+  // ─── SMOOTH CURSOR GLOW with lerp ───
+  const cursorGlow = document.getElementById('cursor-glow');
+  if (cursorGlow && window.matchMedia('(pointer: fine)').matches) {
+    let mx = -300, my = -300, cx = -300, cy = -300;
+    document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
+    (function lerpCursor() {
+      cx += (mx - cx) * 0.08;
+      cy += (my - cy) * 0.08;
+      cursorGlow.style.transform = `translate(${cx - 150}px, ${cy - 150}px)`;
+      requestAnimationFrame(lerpCursor);
+    })();
+  }
+
+  // ─── SECTIONS + DOT NAV ───
+  const sections = document.querySelectorAll<HTMLElement>('.slide');
+  const dots = document.querySelectorAll<HTMLAnchorElement>('#dot-nav a');
+  const animated = new Set<HTMLElement>();
+
+  // ─── SPLIT TEXT into chars for h2 headings ───
+  document.querySelectorAll<HTMLElement>('.slide h2.anim-el').forEach((el) => {
+    const text = el.textContent || '';
+    el.dataset.splitReady = '1';
+    el.innerHTML = text.split('').map((ch) =>
+      ch === ' ' ? ' ' : `<span class="char" style="display:inline-block">${ch}</span>`
+    ).join('');
+  });
+
+  // ─── SET INITIAL HIDDEN STATE for all sections ───
+  sections.forEach((section) => {
+    const animEls = section.querySelectorAll<HTMLElement>('.anim-el');
+    animEls.forEach((el) => {
+      if (el.dataset.splitReady) {
+        gsap.set(el.querySelectorAll('.char'), { opacity: 0, y: 30, rotateX: -40 });
+        gsap.set(el, { opacity: 1 });
+      } else {
+        gsap.set(el, { opacity: 0, y: 50, scale: 0.97 });
+      }
+    });
+  });
+
+  // ─── ENTRANCE ANIMATION for a section ───
+  function runEntranceAnim(section: HTMLElement) {
+    if (animated.has(section)) return;
+    animated.add(section);
+
+    section.classList.add('is-active');
+
+    const animEls = section.querySelectorAll<HTMLElement>('.anim-el');
+    animEls.forEach((el, i) => {
+      const d = el.dataset.delay ? parseFloat(el.dataset.delay) : i * 0.1;
+      if (el.dataset.splitReady) {
+        gsap.to(el.querySelectorAll('.char'), {
+          opacity: 1, y: 0, rotateX: 0,
+          duration: 0.6, stagger: 0.025, delay: d,
+          ease: 'back.out(1.5)',
+        });
+      } else {
+        gsap.to(el, {
+          opacity: 1, y: 0, scale: 1,
+          duration: 1, delay: d,
+          ease: 'power4.out',
+        });
+      }
+    });
+
+    // Section-specific bonus animations
+    const id = section.id;
+
+    if (id === 'frameworks') {
+      gsap.fromTo(section.querySelectorAll('.fw-card'),
+        { scale: 0.8, opacity: 0, rotateY: 15 },
+        { scale: 1, opacity: 1, rotateY: 0, duration: 0.7, stagger: { amount: 0.6, from: 'random' }, delay: 0.3, ease: 'back.out(1.4)' }
+      );
+    }
+    if (id === 'process') {
+      gsap.fromTo(section.querySelectorAll('.step-card'),
+        { y: 60, opacity: 0, scale: 0.9 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.15, delay: 0.2, ease: 'power3.out' }
+      );
+    }
+    if (id === 'backend') {
+      gsap.fromTo(section.querySelectorAll('.ice-layer'),
+        { x: -40, opacity: 0, scale: 0.9 },
+        { x: 0, opacity: 1, scale: 1, duration: 0.7, stagger: 0.12, delay: 0.4, ease: 'power3.out' }
+      );
+    }
+    if (id === 'tools') {
+      gsap.fromTo(section.querySelectorAll('.tool-chip'),
+        { x: 60, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.6, stagger: 0.06, delay: 0.3, ease: 'power3.out' }
+      );
+    }
+    if (id === 'contact') {
+      const card = section.querySelector('.contact-card');
+      if (card) gsap.fromTo(card, { scale: 0.85, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'elastic.out(1, 0.6)' });
+    }
+    if (id === 'libvsfw') {
+      const panels = section.querySelectorAll('.compare-panel');
+      if (panels[0]) gsap.fromTo(panels[0], { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.9, delay: 0.2, ease: 'power3.out' });
+      if (panels[1]) gsap.fromTo(panels[1], { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.9, delay: 0.2, ease: 'power3.out' });
+      const badge = section.querySelector('.vs-badge');
+      if (badge) gsap.fromTo(badge, { scale: 0, rotation: 180 }, { scale: 1, rotation: 0, duration: 0.8, delay: 0.5, ease: 'back.out(2)' });
+    }
+  }
+
+  function updateDots(activeId: string) {
+    dots.forEach((d) => d.classList.toggle('active', d.getAttribute('href') === `#${activeId}`));
+  }
+
+  // ─── MAGNETIC HOVER on cards (desktop) ───
+  if (window.matchMedia('(pointer: fine)').matches) {
+    document.querySelectorAll<HTMLElement>('.fw-card, .tool-chip, .ex-chip').forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        gsap.to(card, { x: x * 0.08, y: y * 0.08, rotateX: -y * 0.05, rotateY: x * 0.05, duration: 0.4, ease: 'power2.out' });
+      });
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, { x: 0, y: 0, rotateX: 0, rotateY: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
+      });
+    });
+  }
+
+  // ─── SLIDE NAVIGATION SYSTEM ───
+  let currentIdx = 0;
+  let isNavigating = false;
+
+  const slideTrack = document.getElementById('slide-track')!;
+
+  function goToSlide(idx: number) {
+    if (idx < 0 || idx >= sections.length || idx === currentIdx || isNavigating) return;
+    isNavigating = true;
+    currentIdx = idx;
+    const target = sections[currentIdx];
+    slideTrack.style.transform = `translateY(-${idx * 100}vh)`;
+    updateDots(target.id);
+    runEntranceAnim(target);
+    setTimeout(() => { isNavigating = false; }, 800);
+  }
+
+  // DOT NAV CLICK
+  dots.forEach((dot) => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = dot.getAttribute('href')!;
+      const idx = [...sections].findIndex((s) => `#${s.id}` === href);
+      if (idx >= 0) goToSlide(idx);
+    });
+  });
+
+  // MOUSE WHEEL
+  document.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    if (e.deltaY > 0) goToSlide(currentIdx + 1);
+    else if (e.deltaY < 0) goToSlide(currentIdx - 1);
+  }, { passive: false });
+
+  // TOUCH SWIPE
+  let touchStartY = 0;
+  document.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
+  document.addEventListener('touchend', (e) => {
+    const diff = touchStartY - e.changedTouches[0].clientY;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) goToSlide(currentIdx + 1);
+      else goToSlide(currentIdx - 1);
+    }
+  }, { passive: true });
+
+  // KEYBOARD
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); goToSlide(currentIdx + 1); }
+    else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); goToSlide(currentIdx - 1); }
+  });
+
+  // ─── PARTICLE CANVAS (Hero) ───
+  const canvas = document.getElementById('particle-canvas') as HTMLCanvasElement | null;
+  if (canvas) {
+    const ctx = canvas.getContext('2d')!;
+
+    function resizeCanvas() {
+      canvas!.width = canvas!.parentElement!.offsetWidth;
+      canvas!.height = canvas!.parentElement!.offsetHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    interface Particle {
+      x: number; y: number; size: number;
+      speedX: number; speedY: number; opacity: number;
+    }
+
+    function createParticle(): Particle {
+      return {
+        x: Math.random() * canvas!.width,
+        y: Math.random() * canvas!.height,
+        size: Math.random() * 2.2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.35,
+        speedY: (Math.random() - 0.5) * 0.35,
+        opacity: Math.random() * 0.4 + 0.08,
+      };
+    }
+
+    const particles: Particle[] = Array.from({ length: 65 }, createParticle);
+
+    let mouseX = -500, mouseY = -500;
+    canvas.parentElement!.addEventListener('mousemove', (e) => {
+      const rect = canvas!.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    });
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas!.width, canvas!.height);
+
+      particles.forEach((p) => {
+        const dx = p.x - mouseX;
+        const dy = p.y - mouseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 160) {
+          const force = (160 - dist) / 160 * 0.9;
+          p.x += (dx / dist) * force;
+          p.y += (dy / dist) * force;
+        }
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.x < 0 || p.x > canvas!.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas!.height) p.speedY *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 245, 212, ${p.opacity})`;
+        ctx.fill();
+      });
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 140) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(0, 245, 212, ${0.1 * (1 - dist / 140)})`;
+            ctx.lineWidth = 0.7;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(drawParticles);
+    }
+
+    drawParticles();
+  }
+
+  // ─── HERO: immediate entrance ───
+  const heroSection = sections[0];
+  if (heroSection) {
+    heroSection.classList.add('is-active');
+    runEntranceAnim(heroSection);
+  }
+
+  // ─── i18n LANGUAGE SWITCHING ───
+  import { translations } from '../i18n/translations';
+
+  let currentLang = 'en';
+  const langToggle = document.getElementById('lang-toggle');
+  const langLabel = document.getElementById('lang-label');
+
+  function applyLang(lang: string) {
+    currentLang = lang;
+    document.documentElement.dataset.lang = lang;
+
+    document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
+      const key = el.dataset.i18n!;
+      const t = translations[key];
+      if (t && t[lang]) {
+        el.innerHTML = t[lang];
+      }
+    });
+
+    // Update toggle button label
+    if (langLabel) {
+      langLabel.textContent = lang === 'en' ? 'FA' : 'EN';
+    }
+
+    // Set direction for Persian text elements
+    if (lang === 'fa') {
+      document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
+        el.style.direction = 'rtl';
+        el.style.textAlign = 'right';
+      });
+    } else {
+      document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
+        el.style.direction = '';
+        el.style.textAlign = '';
+      });
+    }
+  }
+
+  if (langToggle) {
+    langToggle.addEventListener('click', () => {
+      applyLang(currentLang === 'en' ? 'fa' : 'en');
+    });
+  }
+</script>
